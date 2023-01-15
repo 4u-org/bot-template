@@ -1,5 +1,6 @@
 from aiohttp import web
 from web import webapp
+from web.utils import Routes
 
-router = web.UrlDispatcher()
-router.add_routes(webapp.routes)
+routes = Routes()
+routes.add_routes(webapp.routes)

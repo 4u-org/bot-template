@@ -31,7 +31,8 @@ dp.shutdown.register(setup.shutdown)
 
 def main() -> None:
     # Initialize Bot instance with an default parse mode which will be passed to all API calls
-    app = web.Application(router=websource.router)
+    app = web.Application()
+    app.add_routes(websource.routes)
     bot = Bot(cnf.TOKEN, parse_mode="HTML")
     app["bot"] = bot
     setup.start_bot(dp, app, bot)

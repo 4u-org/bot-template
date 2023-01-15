@@ -14,7 +14,6 @@ class DbMiddleware(SetupMiddleware):
         event: types.TelegramObject,
         data: Dict[str, Any],
     ) -> Any:
-        t = time.time()
         user = data["event_from_user"]
         asyncio.create_task(models.TgUser.update_or_create(
             user_id=user.id,
@@ -30,7 +29,6 @@ class DbMiddleware(SetupMiddleware):
         data["dbuser"] = dbuser
 
         r = await handler(event, data)
-        print(time.time() - t)
         adbuser = await dbuser
         await adbuser.db.save()
 

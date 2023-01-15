@@ -55,5 +55,4 @@ class SimpleRefererMiddleware(RefererMiddleware):
         if update_type == "message":
             pass
 
-        print(update.event_type)
         return (update_types.index(update_type) << 55) + add
