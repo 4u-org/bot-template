@@ -1,9 +1,13 @@
 # Telegram bot template
 
 ## Translations
+create locales folder:  
+```
+mkdir locales
+```
 init or update extracted texts:  
 ```
-pybabel extract --input-dirs=. --ignore venv -o locales/messages.pot
+pybabel extract --input-dirs=. --ignore venv -k __:1,2 -o locales/messages.pot
 ```
 add language:  
 ```
