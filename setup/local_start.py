@@ -57,7 +57,7 @@ def generate_self_signed_cert(cert_dir):
  
     # create a key pair
     key = crypto.PKey()
-    key.generate_key(crypto.TYPE_RSA, 1024)
+    key.generate_key(crypto.TYPE_RSA, 2048)
  
     # create a self-signed cert
     cert = crypto.X509()
