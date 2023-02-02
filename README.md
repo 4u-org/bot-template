@@ -1,5 +1,12 @@
 # Telegram bot template
 
+## Hot reload (Update on save)
+to use hot reload run bot with
+```
+reloadium run main.py
+```
+more info: https://github.com/reloadware/reloadium
+
 ## Translations
 create locales folder:  
 ```
