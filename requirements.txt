@@ -6,4 +6,5 @@ Brotli==1.0.9
 pyOpenSSL==22.1.0
 python-dotenv==0.21.0
 redis==4.3.4
+reloadium==0.9.10
 tortoise-orm==0.19.2
