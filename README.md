@@ -42,5 +42,5 @@ apply changes:
 aerich upgrade
 ```
 more info: https://github.com/tortoise/aerich  
-migrations are applied automatically on startup  
+Migrations are applied automatically on startup if LOCAL=False  
 

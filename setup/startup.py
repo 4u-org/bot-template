@@ -1,11 +1,13 @@
 import db.database as db
 import db.models as models
 from aiogram import Bot, Dispatcher
+import config as cfg
 
 async def startup(dispatcher: Dispatcher, *bots: Bot, bot: Bot):
     print("Init started")
     # Init code here
-    await db.migrate()
+    if not cfg.LOCAL:
+        await db.migrate()
     await db.init()
     await models.Bot.update_or_create(
         id=bot.id,
