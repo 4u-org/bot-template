@@ -2,7 +2,6 @@ aerich==0.7.1
 aiogram==3.0.0b5
 asyncpg==0.27.0
 Babel==2.11.0
-Brotli==1.0.9
 pyOpenSSL==22.1.0
 python-dotenv==0.21.0
 redis==4.3.4
