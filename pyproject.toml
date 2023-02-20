@@ -7,7 +7,7 @@ src_folder = "./."
 name = "bot-template"
 version = "0.1.0"
 description = "An advanced template for a telegram bot built with aiogram"
-authors = ["Snimshchikov Ilya"]
+authors = ["Snimshchikov Ilya <snimshchikov.ilya@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [{include = "bot_template"}]
@@ -21,9 +21,12 @@ python-dotenv = "^0.21.1"
 babel = "^2.11.0"
 asyncpg = "^0.27.0"
 aiogram = {version = "^3.0.0b7", allow-prereleases = true}
+fastapi = "^0.92.0"
+aiogram-fastapi-server = "^0.1.0"
 
 [tool.poetry.group.dev.dependencies]
 reloadium = "^0.9.10"
+uvicorn = "^0.20.0"
 
 [build-system]
 requires = ["poetry-core"]
