@@ -3,7 +3,7 @@
 ## Hot reload (Update on save)
 to use hot reload run bot with
 ```
-reloadium run main.py
+reloadium run run.py
 ```
 more info: https://github.com/reloadware/reloadium
 
