@@ -1,22 +1,14 @@
-from typing import Union, Callable
-from aiogram.utils.i18n import gettext, lazy_gettext
+from utils.translations import _, __
 
-def _(text: str):
-    def getargstranslation(**kwargs):
-        return gettext(text).format(**kwargs)
-    return getargstranslation
-    
-def __(text:str, text_plural: str):
-    """
-    Use keyword number to automatically substitude number
-    """
-    def getnumtranslation(number: int):
-        return gettext(text, text_plural, number).format(number=number)
-    return getnumtranslation
+# _ is for general texts
+# __ is for texts with pluralisation, use keyword {number} to automatically substitute number
+
+# In decorators use .lazy (F.text == texts.HELLO_WORLD.lazy)
+# Don't use pluralisation in decorators, but if you do: F.text == texts.PLURAL.lazy(static_number)
 
 class TranslationTexts:
+    # Only singular
     HELLO_WORLD = _("Hello, world!")
+    ERROR = _("Something went wrong...")
+    # Singular and plural
     HELLO_WORLD_PLURALIZATION = __("Hello, {number} world!", "Hello, {number} worlds!")
-    HELLO_WORLD_PARAMS = _("{hello_text}, world!")
-    HELLO_WORLD_PARAMS_PLURALIZATION = _("{hello_text}, {worlds_plural}!")
-    WORLDS_PLURAL = __("{number} world", "{number} worlds!")

@@ -22,6 +22,7 @@ pybabel init -i locales/messages.pot -d locales -D messages -l en
 ```
 update all languages:  
 ```
+pybabel extract --input-dirs=. --ignore venv -k __:1,2 -o locales/messages.pot
 pybabel update -d locales -D messages -i locales/messages.pot
 ```
 more info: https://docs.aiogram.dev/en/dev-3.x/utils/i18n.html  

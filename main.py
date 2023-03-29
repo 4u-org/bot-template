@@ -10,7 +10,7 @@ subprocess.call(['pybabel', 'compile', '-d', 'locales', '-D', 'messages'])
 import api
 import bot as botsource
 import middlewares
-import config as cnf
+import config
 import setup
 
 dp = Dispatcher()
@@ -33,5 +33,5 @@ app = FastAPI()
 app.include_router(api.router)
 
 # Initialize Bot instance with an default parse mode which will be passed to all API calls
-bot = Bot(cnf.TOKEN, parse_mode="HTML")
+bot = Bot(config.TOKEN, parse_mode="HTML")
 setup.register_main_bot(dp, app, bot)

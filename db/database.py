@@ -1,9 +1,9 @@
 from tortoise import Tortoise
 from aerich import Command
-import config as cfg
+import config
 
 TORTOISE_ORM = {
-    "connections": {"default": cfg.DATABASE_URL},
+    "connections": {"default": config.DATABASE_URL},
     "apps": {
         "models": {
             "models": ["db.models", "aerich.models"],

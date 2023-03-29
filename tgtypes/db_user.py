@@ -3,7 +3,7 @@ from aiogram import types, Bot
 from datetime import datetime
 
 from db import models
-import config as cnf
+import config
 
 class DbUser(types.User):
     first_interaction: bool
@@ -31,7 +31,7 @@ class DbUser(types.User):
             self.db.referer_id = referer
             self.db.session_id = 1
             self.db.session_referer_id = referer
-        elif time - self.db.last_action_time > cnf.SESSION_TIMEOUT:
+        elif time - self.db.last_action_time > config.SESSION_TIMEOUT:
             self.db.session_id += 1
             self.db.session_referer_id = referer
         

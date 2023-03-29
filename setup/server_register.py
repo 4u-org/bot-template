@@ -8,11 +8,11 @@ from aiogram_fastapi_server import (
 
 from fastapi import FastAPI
 
-import config as cnf
+import config
 
 
 def register_main_bot(dp: Dispatcher, app: FastAPI, bot: Bot, **kwargs):
-    dp.fsm.storage = RedisStorage.from_url(cnf.REDIS_URL, key_builder=DefaultKeyBuilder(with_bot_id=True))
+    dp.fsm.storage = RedisStorage.from_url(config.REDIS_URL, key_builder=DefaultKeyBuilder(with_bot_id=True))
 
-    SimpleRequestHandler(dispatcher=dp, bot=bot).register(app, path=cnf.MAIN_BOT_PATH)
+    SimpleRequestHandler(dispatcher=dp, bot=bot).register(app, path=config.MAIN_BOT_PATH)
     setup_application(app, dp, bot=bot)
