@@ -18,14 +18,14 @@ async def command_start_handler(
     """
     if message.text == "/start":
         # Invoke with "/start"
-        await message.answer(texts.HELLO_WORLD)
+        await message.answer(texts.HELLO_WORLD.value)
         return
         
     try:
         num = int(message.text[6:])
-        await message.answer(texts.HELLO_WORLD_PLURALIZATION(num))
+        await message.answer(texts.HELLO_WORLD_PLURALIZATION.value(num))
     except:
-        await message.answer(texts.ERROR.upper())
+        await message.answer(texts.ERROR.value)
 
 @router.message(F.text == texts.HELLO_WORLD.lazy)
 async def command_start_handler(
