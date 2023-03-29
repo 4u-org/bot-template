@@ -1,12 +1,14 @@
 from enum import Enum
+from functools import partial
 
 from babel.support import LazyProxy
 from aiogram.utils.i18n import gettext
 
-class TranslatableText(str, Enum):
-    text: str
+class TranslatableText():
+    def __init__(self, text: str):
+        self.text = text
     @property
-    def value(self):
+    def value(self) -> str:
         """Get translated value"""
         return gettext(self.text)
     @property
@@ -17,20 +19,20 @@ class TranslatableText(str, Enum):
         return self.value
     
 def _(text: str) -> TranslatableText:
-    return TranslatableText('TranslatableText', {"text": text}).text
+    return TranslatableText(text)
     
 class TranslatableTextPlural():
     def __init__(self, text: str, text_plural: str):
         self.text = text
         self.text_plural = text_plural
 
-    def __call__(self, number: int) -> str:
-        """Formats text using provided number"""
+    def value(self, number: int) -> str:
+        """Formats translated text using provided number"""
         return gettext(self.text, self.text_plural, number).format(number=number)
     
     def lazy(self, number: int) -> LazyProxy:
         """Lazy proxy for decorators and filters"""
-        return LazyProxy(self.__call__, number)
+        return LazyProxy(self.value, number)
         
 def __(text: str, text_plural: str) -> TranslatableTextPlural:
     """

@@ -25,9 +25,9 @@ async def command_start_handler(
         num = int(message.text[6:])
         await message.answer(texts.HELLO_WORLD_PLURALIZATION(num))
     except:
-        await message.answer(texts.ERROR)
+        await message.answer(texts.ERROR.upper())
 
-@router.message(F.text==texts.ERROR.lazy)
+@router.message(F.text == texts.HELLO_WORLD.lazy)
 async def command_start_handler(
     message: types.Message,
     state: FSMContext,
@@ -36,4 +36,4 @@ async def command_start_handler(
     """
     This handler receive messages with `/start` command
     """
-    await message.answer(texts.ERROR)
+    await message.answer(texts.HELLO_WORLD.value)
