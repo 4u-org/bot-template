@@ -24,9 +24,10 @@ CREATE TABLE IF NOT EXISTS "users" (
     "can_write" BOOL NOT NULL  DEFAULT False,
     "first_action_time" TIMESTAMPTZ NOT NULL  DEFAULT CURRENT_TIMESTAMP,
     "last_action_time" TIMESTAMPTZ NOT NULL  DEFAULT CURRENT_TIMESTAMP,
-    "referer_id" BIGINT,
+    "referer" VARCHAR(64),
     "session_id" INT NOT NULL  DEFAULT 0,
-    "session_referer_id" BIGINT,
+    "session_referer" VARCHAR(64),
+    "pm_referer" VARCHAR(64),
     "bot_id" BIGINT NOT NULL REFERENCES "bots" ("id") ON DELETE CASCADE,
     CONSTRAINT "uid_users_bot_id_bec2bb" UNIQUE ("bot_id", "user_id")
 );
