@@ -20,9 +20,8 @@ redis = "^4.5.1"
 python-dotenv = "^0.21.1"
 babel = "^2.11.0"
 asyncpg = "^0.27.0"
-aiogram = {version = "^3.0.0b7", allow-prereleases = true}
-fastapi = "^0.92.0"
-aiogram-fastapi-server = "^0.1.1"
+aiogram = {version = "^3.0.0"}
+aiogram-fastapi-server = "^0.1.2"
 
 [tool.poetry.group.dev.dependencies]
 reloadium = "^0.9.10"
