@@ -16,3 +16,4 @@ class TranslationTexts:
     # Singular and plural
     HELLO_WORLD_PLURALIZATION = __("Hello, {number} world!", "Hello, {number} worlds!")
     
+texts = TranslationTexts

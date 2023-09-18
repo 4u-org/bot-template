@@ -3,18 +3,19 @@
 ## Hot reload (Update on save)
 to use hot reload run bot with
 ```
-reloadium run run.py
+python run run.py
 ```
-more info: https://github.com/reloadware/reloadium
 
 ## Translations
+texts are stored in ./utils/texts.py
+
 create locales folder:  
 ```
 mkdir locales
 ```
 init or update extracted texts:  
 ```
-pybabel extract --input-dirs=. --ignore venv -k __:1,2 -o locales/messages.pot
+pybabel extract --input-dirs=./utils -k __:1,2 -o locales/messages.pot
 ```
 add language:  
 ```
@@ -22,7 +23,7 @@ pybabel init -i locales/messages.pot -d locales -D messages -l en
 ```
 update all languages:  
 ```
-pybabel extract --input-dirs=. --ignore venv -k __:1,2 -o locales/messages.pot
+pybabel extract --input-dirs=./utils -k __:1,2 -o locales/messages.pot
 pybabel update -d locales -D messages -i locales/messages.pot
 ```
 more info: https://docs.aiogram.dev/en/dev-3.x/utils/i18n.html  

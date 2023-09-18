@@ -50,9 +50,10 @@ class SimpleRefererMiddleware(RefererMiddleware):
     async def get_referer(self, event: types.TelegramObject, data: Dict[str, Any]):
         update: types.Update = data["event_update"]
         update_type = update.event_type
-        add = 0
 
         if update_type == "message":
-            pass
+            if update.message.text and update.message.text.startswith("/start "):
+                return update.message.text[7:]
+            return "message_" + update.message.chat.type
 
-        return (update_types.index(update_type) << 55) + add
+        return "event_" + update_type

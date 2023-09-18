@@ -3,7 +3,7 @@ from aiogram import Router, Bot, types, F
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 
-from bot.texts import TranslationTexts as texts
+from utils.texts import TranslationTexts as texts
 
 router = Router()
 

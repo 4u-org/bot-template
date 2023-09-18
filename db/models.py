@@ -30,15 +30,16 @@ class User(Model):
     # When user made his last interaction with bot
     last_action_time = fields.DatetimeField(auto_now_add=True)
     # Who invited this user (more info in notion)
-    referer_id = fields.BigIntField(default=None, null=True)
+    referer = fields.CharField(max_length=64, default=None, null=True)
     # Session is a secuence of actions that are less then 5 minutes apart (more info in notion)
     session_id = fields.IntField(default=0)
     # Who invited this user to reuse the bot (more info in notion)
-    session_referer_id = fields.BigIntField(default=None, null=True)
+    session_referer = fields.CharField(max_length=64, default=None, null=True)
     # What content id is the user exploring right now
     # content_id = fields.IntField(default=None)
     # Who invited this user to explore this content (more info in notion)
     # content_referer_id = fields.BigIntField(default=None)
+    pm_referer = fields.CharField(max_length=64, default=None, null=True)
 
     # Custom params
 

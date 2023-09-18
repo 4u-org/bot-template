@@ -5,10 +5,12 @@ from datetime import datetime
 from db import models
 import config
 
-class DbUser(types.User):
-    first_interaction: bool
-    db: models.User
-    bot: Bot
+class DbUser():
+    def __init__(self, db: models.User, bot: Bot, tg: types.User, first_interaction: bool = False):
+        self.db = db
+        self.bot = bot
+        self.tg = tg
+        self.first_interaction = first_interaction
 
     class Config:
         arbitrary_types_allowed = True
@@ -18,21 +20,16 @@ class DbUser(types.User):
             bot_id=bot.id,
             user_id=user.id
         )
-        
-        data = user.dict()
-        data["bot"] = bot
-        data["db"] = db
-        data["first_interaction"] = first_interaction
 
-        return DbUser(**data)
+        return DbUser(db=db, bot=bot, tg=user, first_interaction=first_interaction)
     
-    async def update_session(self, referer: int, time: datetime) -> None:
+    async def update_session(self, referer: str, time: datetime) -> None:
         if self.first_interaction:
-            self.db.referer_id = referer
+            self.db.referer = referer
             self.db.session_id = 1
-            self.db.session_referer_id = referer
+            self.db.session_referer = referer
         elif time - self.db.last_action_time > config.SESSION_TIMEOUT:
             self.db.session_id += 1
-            self.db.session_referer_id = referer
+            self.db.session_referer = referer
         
         self.db.last_action_time = time

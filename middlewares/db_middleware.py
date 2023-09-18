@@ -14,8 +14,11 @@ class DbMiddleware(SetupMiddleware):
         event: types.TelegramObject,
         data: Dict[str, Any],
     ) -> Any:
-        user = data["event_from_user"]
-        asyncio.create_task(models.TgUser.update_or_create(
+        if "event_from_user" not in data:
+            return await handler(event, data)
+        
+        user: types.User = data["event_from_user"]
+        await models.TgUser.update_or_create(
             user_id=user.id,
             defaults={
                 "first_name": user.first_name,
@@ -24,12 +27,15 @@ class DbMiddleware(SetupMiddleware):
                 "language_code": user.language_code,
                 "is_premium": user.is_premium
             }
-        ))
-        dbuser = asyncio.create_task(tgtypes.DbUser.create(user, data["bot"]))
-        data["dbuser"] = dbuser
+        )
+        dbuser = await tgtypes.DbUser.create(user, data["bot"])
+        update: types.Update = data["event_update"]
+        update_type = update.event_type
+        if update_type == "message" and update.message.chat.type == "private":
+            dbuser.db.can_write = True
+        data["user"] = dbuser
 
         r = await handler(event, data)
-        adbuser = await dbuser
-        await adbuser.db.save()
+        await dbuser.db.save()
 
         return r
