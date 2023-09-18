@@ -3,7 +3,7 @@
 ## Hot reload (Update on save)
 to use hot reload run bot with
 ```
-python run run.py
+python run.py
 ```
 
 ## Translations
