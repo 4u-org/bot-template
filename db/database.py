@@ -21,4 +21,4 @@ async def close():
 async def migrate():
     command = Command(tortoise_config=TORTOISE_ORM)
     await command.init()
-    await command.upgrade()
+    await command.upgrade(True)
